@@ -40,7 +40,7 @@ export default function TransactionForm({ userEmail, onAdd }: { userEmail: strin
     }
 
     return (
-        <form onSubmit={handleSubmit} className="bg-white shadow-md p-6 rounded-xl flex flex-col gap-4 w-full max-w-md">
+        <form onSubmit={handleSubmit} className="bg-white shadow-md px-6 py-4 rounded-xl flex flex-col gap-4  w-72 max-w-md">
             <h2 className="text-xl font-semibold">Nova Transação</h2>
 
             <div className="flex gap-4">
