@@ -16,7 +16,7 @@ export default function Login() {
 
         const users: User[] = JSON.parse(localStorage.getItem("users") || "[]");
         const user = users.find((u: User) => u.email === email && u.password === password);
-        console.log("Usuário encontrado:", user);
+         
         if (!user) {
             setError("Email ou senha incorretos");
         } else {
