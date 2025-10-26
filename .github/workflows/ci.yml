@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: Pipeline CI/CD
 
 on:
   push:
@@ -13,32 +13,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - name: Fazer checkout do repositório
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '20'
+          cache: 'npm'
 
-      - name: Install dependencies
-        run: npm install
+      - name: Instalar dependências
+        run: npm ci
 
-      - name: Run Jest tests
-        run: npm run test
+      - name: Executar testes Jest
+        run: npm test
 
-      - name: Run Cypress tests
-        uses: cypress-io/github-action@v5
+      - name: Executar testes Cypress
+        uses: cypress-io/github-action@v6
         with:
           start: npm start
           wait-on: 'http://localhost:3000'
-          wait-on-timeout: 60
+          wait-on-timeout: 120
 
-      - name: Deploy to Vercel
+      - name: Implantar no Vercel
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           working-directory: .
-          prod: true
+          production: true
