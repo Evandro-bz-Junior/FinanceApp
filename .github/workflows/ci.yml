@@ -35,7 +35,7 @@ jobs:
           wait-on-timeout: 60
 
       - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v22
+        uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
