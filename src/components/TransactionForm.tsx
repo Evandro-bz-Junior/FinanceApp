@@ -75,6 +75,7 @@ export default function TransactionForm({ userEmail, onAdd }: { userEmail: strin
 
             <input
                 type="number"
+                 min="0"
                 placeholder="Valor"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}

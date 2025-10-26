@@ -6,8 +6,7 @@ import { Transaction } from "@/types/transaction";
 import TransactionForm from "@/components/TransactionForm";
 import TransactionList from "@/components/TransactionList";
 import TransactionFilter from "@/components/TransactionFilter";
-import TransactionChart from "@/components/TransactionChart";
-
+ 
 
 export default function Dashboard() {
     const [userEmail, setUserEmail] = useState("");
@@ -32,7 +31,13 @@ export default function Dashboard() {
 
     const [selectedType, setSelectedType] = useState("all");
     const [selectedCategory, setSelectedCategory] = useState("all");
-    const categories = Array.from(new Set(transactions.map((t) => t.category)));
+    const categories = Array.from(
+        new Set(
+            transactions
+                .filter((t) => selectedType === "all" || t.type === selectedType)
+                .map((t) => t.category)
+        )
+    );
 
     const filteredTransactions = transactions.filter((t) => {
         return (
@@ -44,39 +49,34 @@ export default function Dashboard() {
 
     return (
         <section className="flex flex-col   gap-8 p-8">
-            <h1 className="text-3xl font-bold">Dashboard</h1>
-            <div className="flex justify-around ">
-                <div className="flex flex-col gap-2 ">
-                    <p className="text-lg font-semibold ps-2">
-                        Saldo: <span className={balance >= 0 ? "text-green-600" : "text-red-600"}>R$ {balance.toFixed(2)}</span>
+            <h1 className="text-3xl text-center font-bold">Dashboard</h1>
+            <div className="flex justify-around gap-8">
+                <div className="flex flex-col gap-2 justify-between">
+                    <p className="text-lg font-semibold bg-white shadow-md px-4 py-4 rounded-2xl text-center">
+                        Saldo: <span id="balance" className={balance >= 0 ? "text-green-600" : "text-red-600"} >R$ {balance.toFixed(2)}</span>
                     </p>
 
                     <TransactionForm userEmail={userEmail} onAdd={refreshTransactions} />
                 </div>
 
-                <div className="w-full max-h-fit mt-6">
-                    <TransactionChart data={filteredTransactions} />
 
+                <div className="flex flex-col w-full gap-4">
+                    <h2 className="text-xl text-center text-black font-semibold mb-2">Transações</h2>
+                    <TransactionFilter
+                        selectedType={selectedType}
+                        setSelectedType={setSelectedType}
+                        selectedCategory={selectedCategory}
+                        setSelectedCategory={setSelectedCategory}
+                        categories={categories}
+                    />
+
+                    <TransactionList
+                        transactions={filteredTransactions}
+                        userEmail={userEmail}
+                        onDelete={refreshTransactions}
+                    />
                 </div>
             </div>
-            
-            <h2 className="text-xl text-center text-white font-semibold mb-2">Transações</h2>
-            <TransactionFilter
-                selectedType={selectedType}
-                setSelectedType={setSelectedType}
-                selectedCategory={selectedCategory}
-                setSelectedCategory={setSelectedCategory}
-                categories={categories}
-            />
-
-            <TransactionList
-                transactions={filteredTransactions}
-                userEmail={userEmail}
-                onDelete={refreshTransactions}
-            />
-
-
-
         </section>
     );
 }

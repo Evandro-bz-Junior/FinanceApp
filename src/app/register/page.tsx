@@ -17,7 +17,7 @@ export default function Register() {
         e.preventDefault();
 
         if (!name || !email || !password) {
-            setError("Todos os campos são obrigatórios");
+            setError("Preencha todos os campos");
             return;
         }
 
@@ -48,7 +48,7 @@ export default function Register() {
     }
 
     return (
-        <section className="flex justify-center items-center h-screen  ">
+        <section className="flex justify-center items-center  mt-8  ">
             <div className="flex flex-col gap-6 items-center w-full max-w-sm p-8 rounded-2xl bg-white shadow-md">
                 <h1 className="text-2xl font-bold">Registro</h1>
 

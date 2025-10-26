@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { User } from "../../types/user";
-import Link from "next/link"; 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function Login() {
@@ -16,19 +16,18 @@ export default function Login() {
 
         const users: User[] = JSON.parse(localStorage.getItem("users") || "[]");
         const user = users.find((u: User) => u.email === email && u.password === password);
-
+        console.log("Usuário encontrado:", user);
         if (!user) {
             setError("Email ou senha incorretos");
-            return;
+        } else {
+            localStorage.setItem("loggedUser", JSON.stringify(user));
+            window.dispatchEvent(new Event("storageUpdate"));
+            router.push("/dashboard");
         }
-
-        localStorage.setItem("loggedUser", JSON.stringify(user));
-        window.dispatchEvent(new Event("storageUpdate"));
-        router.push("/dashboard");
     }
 
     return (
-        <section className="flex justify-center items-center h-screen  ">
+        <section className="flex justify-center items-center  mt-8  ">
             <div className="flex flex-col gap-6 items-center w-full max-w-sm p-8 rounded-2xl bg-white shadow-md">
                 <h1 className="text-2xl font-bold">Login</h1>
 

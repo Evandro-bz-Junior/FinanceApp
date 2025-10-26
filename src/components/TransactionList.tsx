@@ -2,6 +2,7 @@
 
 import { Transaction } from "@/types/transaction";
 import { deleteTransaction } from "@/utils/transactionsStorage";
+import { TrashIcon } from "./ui/TrashIcon";
 
 type Props = {
     transactions: Transaction[];
@@ -17,9 +18,9 @@ export default function TransactionList({ transactions, userEmail, onDelete }: P
     return (
         <ul className="bg-white shadow-md rounded-xl divide-y">
             {transactions.map((t) => (
-                <li key={t.id} className="flex justify-between items-center px-4 py-2">
+                <li data-testid={`transaction-${t.id}`} key={t.id} className="flex justify-between items-center px-4 py-2">
                     <div>
-                        <p className="font-medium">{t.category}</p>
+                        <p className="font-medium transform capitalize">{t.category}</p>
                         <p className="text-sm text-gray-500">{t.date.split("-").reverse().join("/")}</p>
                     </div>
 
@@ -36,8 +37,9 @@ export default function TransactionList({ transactions, userEmail, onDelete }: P
                                 onDelete();
                             }}
                             className="text-red-500 hover:text-red-700 text-sm"
+                            aria-label={`Excluir transação ${t.category}`}
                         >
-                            Excluir
+                            <TrashIcon/>
                         </button>
                     </div>
                 </li>
