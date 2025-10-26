@@ -25,7 +25,7 @@ jobs:
         run: npm install
 
       - name: Run Jest tests
-        run: npx jest --verbose
+        run: npm run test
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v5
