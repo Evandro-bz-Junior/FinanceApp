@@ -16,13 +16,13 @@ export default function TransactionFilter({
     categories,
 }: Props) {
     return (
-        <div className="flex flex-col md:flex-row gap-4 items-center justify-center mb-4">
+        <div className="flex flex-row sm:flex-col md:flex-row gap-2 items-center justify-center mb-4">
             {/* Filtrar por tipo */}
             <select
                 data-testid="filter-type"
                 value={selectedType}
                 onChange={(e) => setSelectedType(e.target.value)}
-                className="border border-black rounded px-3 py-2 "
+                className="border border-black rounded px-6 py-2 "
             >
                 <option value="all">Todos os tipos</option>
                 <option value="income">Receita</option>
@@ -34,7 +34,7 @@ export default function TransactionFilter({
                 data-testid="filter-category"
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="border border-black rounded px-3 py-2"
+                className="border border-black rounded px-2 py-2"
             >
                 <option value="all">Todas as categorias</option>
                 {categories.map((c) => (

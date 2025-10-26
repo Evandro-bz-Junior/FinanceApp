@@ -75,7 +75,7 @@ export default function TransactionForm({ userEmail, onAdd }: { userEmail: strin
 
             <input
                 type="number"
-                 min="0"
+                min="0"
                 placeholder="Valor"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
@@ -87,6 +87,8 @@ export default function TransactionForm({ userEmail, onAdd }: { userEmail: strin
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 className="border rounded-lg px-4 py-2"
+                placeholder="Data"
+
             />
 
             {error && <p className="text-red-500 text-sm">{error}</p>}

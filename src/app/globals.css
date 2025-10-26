@@ -114,9 +114,24 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
 
+html,
+body,
+#__next {
  
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(to bottom, #72C6EF, #004E8F);
+  color: #1F2937;
+  background-repeat: no-repeat;
+}

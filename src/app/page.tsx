@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <section className="flex flex-col items-center   h-screen  ">
+    <section className="flex flex-col items-center h-screen  ">
 
       <div className=" min-h-fit p-6 bg-gradient-to-br from-blue-50 to-white text-center mt-24 rounded-3xl flex flex-col items-center">
         <h1 className="text-3xl font-bold mb-4">Bem-vindo ao FinanceApp 💰</h1>
