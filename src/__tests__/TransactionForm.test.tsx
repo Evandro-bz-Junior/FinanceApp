@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { saveTransaction } from "@/utils/transactionsStorage";
 import TransactionForm from "@/components/TransactionForm";
-import { useRouter } from "next/navigation";
+
 
 // Mock das dependências
 jest.mock("@/utils/transactionsStorage", () => ({

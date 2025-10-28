@@ -51,7 +51,7 @@ export default function Dashboard() {
         <section className="flex flex-col min-h-screen gap-8 p-8">
             <h1 className="text-3xl text-center font-bold">Dashboard</h1>
             <div className="flex flex-col  sm:flex-row  justify-around gap-8">
-                <div className="flex flex-col gap-2 justify-around items-center w-full ">
+                <div className="flex flex-col gap-6 justify-around items-center w-full h-fit ">
                     <p className="text-lg font-semibold bg-white shadow-md px-4 py-1 rounded-2xl text-center ">
                         Saldo: <span id="balance" className={balance >= 0 ? "text-green-600" : "text-red-600"} >R$ {balance.toFixed(2)}</span>
                     </p>
