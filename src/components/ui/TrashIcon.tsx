@@ -30,18 +30,24 @@ const TrashIcon = forwardRef<DashboardIconHandle, DashboardIconProps>(
 		});
 
 		const handleEnter = useCallback(
-			(e?: React.MouseEvent<HTMLDivElement>) => {
+			(e?: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 				if (reduced) return;
-				if (!isControlled.current) controls.start("animate");
-				else onMouseEnter?.(e as any);
+				if (!isControlled.current) {
+					controls.start("animate");
+				} else if (onMouseEnter) {
+					onMouseEnter(e!);
+				}
 			},
 			[controls, reduced, onMouseEnter],
 		);
 
 		const handleLeave = useCallback(
-			(e?: React.MouseEvent<HTMLDivElement>) => {
-				if (!isControlled.current) controls.start("normal");
-				else onMouseLeave?.(e as any);
+			(e?: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+				if (!isControlled.current) {
+					controls.start("normal");
+				} else if (onMouseLeave) {
+					onMouseLeave(e!);
+				}
 			},
 			[controls, onMouseLeave],
 		);
@@ -50,36 +56,35 @@ const TrashIcon = forwardRef<DashboardIconHandle, DashboardIconProps>(
 			normal: { scale: 1, rotate: 0 },
 			animate: {
 				scale: [1, 1.03, 1],
-
 				transition: { duration: 0.5, ease: "easeOut" },
 			},
 		};
 
-		const lidBounce: Variants ={
-					normal: { y: 0, rotate: 0, transformOrigin: "12px 6px" },
-					animate: {
-						rotate: [0, -10, 6, -3, 0],
-						y: [0, -2, 0.5, 0],
-						transition: { duration: 0.9, ease: "easeInOut", delay: 0.05 },
-					},
-				};
+		const lidBounce: Variants = {
+			normal: { y: 0, rotate: 0, transformOrigin: "12px 6px" },
+			animate: {
+				rotate: [0, -10, 6, -3, 0],
+				y: [0, -2, 0.5, 0],
+				transition: { duration: 0.9, ease: "easeInOut", delay: 0.05 },
+			},
+		};
 
-		const barSnap: Variants ={
-					normal: { scaleX: 1, opacity: 1 },
-					animate: {
-						scaleX: [0.85, 1.08, 1],
-						opacity: [0.9, 1, 1],
-						transition: { duration: 0.45, ease: "easeOut", delay: 0.1 },
-					},
-				};
+		const barSnap: Variants = {
+			normal: { scaleX: 1, opacity: 1 },
+			animate: {
+				scaleX: [0.85, 1.08, 1],
+				opacity: [0.9, 1, 1],
+				transition: { duration: 0.45, ease: "easeOut", delay: 0.1 },
+			},
+		};
 
 		const binSettle: Variants = {
-					normal: { y: 0, scaleY: 1, transformOrigin: "50% 100%" },
-					animate: {
-						scaleY: [1, 0.97, 1],
-						transition: { duration: 0.5, ease: "easeOut", delay: 0.2 },
-					},
-				};
+			normal: { y: 0, scaleY: 1, transformOrigin: "50% 100%" },
+			animate: {
+				scaleY: [1, 0.97, 1],
+				transition: { duration: 0.5, ease: "easeOut", delay: 0.2 },
+			},
+		};
 
 		return (
 			<motion.div
