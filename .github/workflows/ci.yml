@@ -31,15 +31,9 @@ jobs:
           node-version: 20
       - run: npm ci
       - run: npm run build
-      - name: Start application
-        run: nohup npm start &
-        env:
-          PORT: 3000
-      - name: Wait for server
-        uses: jakejarvis/wait-action@v0.1.4
-        with:
-          time: '10'
-      - run: npx cypress run
+
+      - name: Run Cypress tests with server
+        run: npx start-server-and-test "npm start" http://localhost:3000 "npx cypress run"
 
   vercel-deploy:
     name: Deploy to Vercel
@@ -60,4 +54,3 @@ jobs:
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           vercel-args: '--prod'
-          working-directory: ./
