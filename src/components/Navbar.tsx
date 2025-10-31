@@ -1,6 +1,5 @@
 "use client";
-
-import Link from "next/link";
+ 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { User } from "@/types/user";
@@ -30,9 +29,9 @@ export default function Navbar() {
 
     return (
         <nav className="flex justify-between items-center px-6 py-4 bg-white shadow-md">
-            <Link href="/" className="text-xl font-bold text-blue-600">
+            <span  id="logo" className="text-xl font-bold text-blue-600">
                 FinanceApp
-            </Link>
+            </span>
 
             <div className="flex items-center gap-4">
                 {user ? (
@@ -47,19 +46,7 @@ export default function Navbar() {
                             Sair
                         </button>
                     </>
-                ) : (
-                    <>
-                        <Link href="/login" className="text-blue-600 hover:underline">
-                            Entrar
-                        </Link>
-                        <Link
-                            href="/register"
-                            className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600"
-                        >
-                            Criar Conta
-                        </Link>
-                    </>
-                )}
+                ) :null}
             </div>
         </nav>
     );

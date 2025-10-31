@@ -1,7 +1,23 @@
-// src/app/page.tsx
+'use client';
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+
 export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("loggedUser");
+    if (storedUser) {
+      // Se o usuário está logado, redireciona para /dashboard
+      router.replace("/dashboard");
+    }
+  }, [router]);
+
+   
+
   return (
     <section className="flex flex-col items-center h-screen  ">
 

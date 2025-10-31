@@ -12,7 +12,7 @@ type Props = {
 
 export default function TransactionList({ transactions, userEmail, onDelete }: Props) {
     if (transactions.length === 0) {
-        return <p className="text-gray-500 p-4 text-center">Nenhuma transação registrada</p>;
+        return <p className="text-black-500 font-bold p-4 text-center">Nenhuma transação registrada</p>;
     }
 
     return (
